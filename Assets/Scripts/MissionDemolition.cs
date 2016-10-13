@@ -69,7 +69,7 @@ public class MissionDemolition : MonoBehaviour {
         shotsTaken = 0;
 
         //reset the camera
-        SwitchView("Both");
+        //SwitchView("Both");  ERROR HERE
         ProjectileLine.S.Clear();
 
         //reset the goal
@@ -98,7 +98,7 @@ public class MissionDemolition : MonoBehaviour {
             //change mode to stop checking for level end
             mode = GameMode.levelEnd;
             //zoom out
-            SwitchView("Both");
+            //SwitchView("Both");  ERROR HERE
             //start the next level in 2 seconds 
             Invoke("NextLevel", 2f);
         }
@@ -124,21 +124,21 @@ public class MissionDemolition : MonoBehaviour {
             case "Slingshot":
                 if (GUI.Button (buttonRect, "Show Castle"))
                 {
-                    SwitchView("Castle");
+                    //SwitchView("Castle");   ERROR HERE
                 }
                 break;
 
             case "Castle":
                 if (GUI.Button(buttonRect, "Show Both"))
                 {
-                    SwitchView("Both");
+                    //SwitchView("Both");    ERROR HERE
                 }
                 break;
 
             case "Both":
                 if (GUI.Button(buttonRect, "Show Slingshot"))
                 {
-                    SwitchView("Slingshot");
+                    //SwitchView("Slingshot");   ERROR HERE
                 }
                 break;
         }
