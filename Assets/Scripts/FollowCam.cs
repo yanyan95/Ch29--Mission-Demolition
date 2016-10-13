@@ -23,25 +23,45 @@ public class FollowCam : MonoBehaviour {
         S = this;
         camZ = this.transform.position.z;
     }
-	
-	// Update is called once per frame
-	void FixedUpdate () {
-        //if there's only one line following an if, it doesn't need braces
-        if (poi == null)
-            return;    //return if there is no poi
 
-        //get the position of the poi
-        Vector3 destination = poi.transform.position;
-        //limit the X & Y to minimum values
+
+    void FixedUpdate ()
+    {
+        Vector3 destination;
+        //if there is no poi, return to P:[0,0,0]
+        if(poi == null)
+        {
+            destination = Vector3.zero;
+        }
+        else
+        {
+            //get the position of the poi
+            destination = poi.transform.position;
+            //if poi is a Projectile, check to see if it's at rest
+            if (poi.tag == "Projectile")
+            {
+                //if it is sleeping (that is, not moving)
+                if(poi.GetComponent<Rigidbody>().IsSleeping())
+                {
+                    //return to default view
+                    poi = null;
+                    //in the next update
+                    return;
+                }
+            }
+        }
+
+
+        //limit the X & Y to minmum values
         destination.x = Mathf.Max(minXY.x, destination.x);
         destination.y = Mathf.Max(minXY.y, destination.y);
-        //interpolate from the current Camera position toward destination
+        //interpoloate from the current Camera position toward destination
         destination = Vector3.Lerp(transform.position, destination, easing);
-        //retain a destination.z of camZ 
+        //retain a destination.z of camZ
         destination.z = camZ;
         //set the camera to the destination
         transform.position = destination;
-        //set the orthographicSize of the camera to keep Ground in view
+        //set the orthographicSize of the Camera to keep Ground in view
         this.GetComponent<Camera>().orthographicSize = destination.y + 10;
-	}
+    }
 }
