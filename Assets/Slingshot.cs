@@ -47,7 +47,7 @@ public class Slingshot : MonoBehaviour {
         //start it at the launchPoint
         projectile.transform.position = launchPos;
         //set it to isKinematic for now
-        projectile.GetComponent<Rigidbody>().isKinematic = true;  //changed it a bit to see if there is still an error..LOOK AT BOOK FOR THE ORIGINAL VER.
+        projectile.GetComponent<Rigidbody>().isKinematic = true;
     }
 
 
@@ -64,6 +64,24 @@ public class Slingshot : MonoBehaviour {
         //find the delta from the luanchPos to the mousePos3D
         Vector3 mouseDelta = mousePos3D - launchPos;
         //limit mouseDelta to the radius of the Slingshot SphereCollider
+        float maxMagnitude = this.GetComponent<SphereCollider>().radius;
+        if (mouseDelta.magnitude > maxMagnitude)
+        {
+            mouseDelta.Normalize();
+            mouseDelta *= maxMagnitude;
+        }
+        //move the projectile to this new position
+        Vector3 projPos = launchPos + mouseDelta;
+        projectile.transform.position = projPos;
 
+        if (Input.GetMouseButtonUp(0))
+        {
+            //the mouse has been released
+            aimingMode = false;
+            projectile.GetComponent<Rigidbody>().isKinematic = false;
+            projectile.GetComponent<Rigidbody>().velocity = -mouseDelta * velocityMult;
+            FollowCam.S.poi = projectile;
+            projectile = null;
+        }
     }
 }
