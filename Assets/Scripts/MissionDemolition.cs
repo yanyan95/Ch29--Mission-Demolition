@@ -69,7 +69,7 @@ public class MissionDemolition : MonoBehaviour {
         shotsTaken = 0;
 
         //reset the camera
-        //SwitchView("Both");  ERROR HERE
+        SwitchView ("Both"); 
         ProjectileLine.S.Clear();
 
         //reset the goal
@@ -98,7 +98,7 @@ public class MissionDemolition : MonoBehaviour {
             //change mode to stop checking for level end
             mode = GameMode.levelEnd;
             //zoom out
-            //SwitchView("Both");  ERROR HERE
+            SwitchView("Both"); 
             //start the next level in 2 seconds 
             Invoke("NextLevel", 2f);
         }
@@ -124,28 +124,28 @@ public class MissionDemolition : MonoBehaviour {
             case "Slingshot":
                 if (GUI.Button (buttonRect, "Show Castle"))
                 {
-                    //SwitchView("Castle");   ERROR HERE
+                    SwitchView("Castle");   
                 }
                 break;
 
             case "Castle":
                 if (GUI.Button(buttonRect, "Show Both"))
                 {
-                    //SwitchView("Both");    ERROR HERE
+                    SwitchView("Both");    
                 }
                 break;
 
             case "Both":
                 if (GUI.Button(buttonRect, "Show Slingshot"))
                 {
-                    //SwitchView("Slingshot");   ERROR HERE
+                    SwitchView("Slingshot");  
                 }
                 break;
         }
     }
 
     //static method that allows code anywhere to request a veiw change
-    static public void SwichView (string eView)
+    static public void SwitchView (string eView)
     {
         S.showing = eView;
         switch (S.showing)
