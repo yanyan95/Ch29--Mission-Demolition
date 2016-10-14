@@ -45,6 +45,7 @@ public class FollowCam : MonoBehaviour {
                 {
                     //return to default view
                     poi = null;
+                    MissionDemolition.SwitchView("Both");
                     //in the next update
                     return;
                 }

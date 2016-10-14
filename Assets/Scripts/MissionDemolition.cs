@@ -69,7 +69,11 @@ public class MissionDemolition : MonoBehaviour {
         shotsTaken = 0;
 
         //reset the camera
+<<<<<<< HEAD
         SwitchView("Both");  
+=======
+        SwitchView ("Both"); 
+>>>>>>> origin/master
         ProjectileLine.S.Clear();
 
         //reset the goal
@@ -124,7 +128,11 @@ public class MissionDemolition : MonoBehaviour {
             case "Slingshot":
                 if (GUI.Button (buttonRect, "Show Castle"))
                 {
+<<<<<<< HEAD
                     SwitchView("Castle"); 
+=======
+                    SwitchView("Castle");   
+>>>>>>> origin/master
                 }
                 break;
 
@@ -138,7 +146,11 @@ public class MissionDemolition : MonoBehaviour {
             case "Both":
                 if (GUI.Button(buttonRect, "Show Slingshot"))
                 {
+<<<<<<< HEAD
                     SwitchView("Slingshot"); 
+=======
+                    SwitchView("Slingshot");  
+>>>>>>> origin/master
                 }
                 break;
         }
